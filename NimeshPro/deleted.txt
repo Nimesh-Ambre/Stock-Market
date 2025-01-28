@@ -1,0 +1,24 @@
+
+        <section class="market-news">
+            <h2>Market News</h2>
+            <div id="newsContainer" class="news-container">
+                <!-- Market news will be loaded here -->
+            </div>
+        </section>
+
+        <section class="portfolio-tracking">
+            <h2>Portfolio Tracking</h2>
+            <div class="portfolio-dropdown">
+                <label for="portfolioSelect">Select Stock:</label>
+                <select id="portfolioSelect" onchange="updatePortfolio()">
+                    <option value="">Select Stock</option>
+                    <option value="AAPL">Apple</option>
+                    <option value="TSLA">Tesla</option>
+                    <option value="GOOG">Google</option>
+                </select>
+            </div>
+            <div id="portfolioDetails" class="portfolio-details">
+                <!-- Portfolio information will be loaded here -->
+            </div>
+        </section> 
+        -----------------------------------
