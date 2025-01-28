@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Dashboard</title>
+    <link rel="stylesheet" href="enhance.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header" style="display: flex; justify-content: center; align-items: center;">
+            <h1>Stock Market Dashboard</h1>
+        </header>
+
+
+
+        <section class="stock-details" style="border-style: 1px;">
+            <div class="stock-details-container">
+                <div id="stockInfo" class="stock-info">
+                    <h2>Stock Information</h2>
+                    <img src="https://assets.finbold.com/uploads/2025/01/NVDA-stock-price-1-month-chart.jpg" width="750" height="550">
+                    <div class="stock-info-container">
+                        <p>Price: <span id="stockPrice">₹110.00</span></p>
+                        <p>Volume: <span id="stockVolume">10</span></p>
+                    </div>
+                </div>
+        
+                <div id="charts" class="charts">
+                    <h2>Stock Performance</h2><div id="plot">                    
+                    </div>
+
+\                </div>
+            </div>
+        </section>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+
+    <script>
+      // Fetch the JSON file
+fetch('plot.json')
+  .then(response => response.json())  // Parse the JSON response
+  .then(plotData => {
+    // log the plot data to check it
+    console.log(plotData);
+    
+    // Use Plotly to render the plot
+    Plotly.newPlot('plot', plotData.data, plotData.layout);
+  })
+  .catch(error => console.error('Error loading JSON:', error));
+
+    </script>
+        <style>
+            .stock-details-container {
+                display: flex;
+                gap: 20px; /* Adds space between the two divs */
+            }
+        
+            .stock-info, .charts {
+                flex: 1; /* Ensures both divs take equal width */
+                text-align: center; /* Optional: Centers the content */
+            }
+        
+            img {
+                max-width: 100%; /* Ensures images are responsive */
+                height: auto;
+            }
+        </style>
+        
+        <section class="market-news">
+            <h2>Market News</h2>
+            <p>Stock markets experienced a mixed trading session today, with the S&P 500 closing slightly higher amid investor optimism surrounding upcoming corporate earnings reports. </p>
+            <div id="newsContainer" class="news-container">
+                <!-- Market news will be loaded here -->
+            </div>
+        </section>
+
+        <section class="portfolio-tracking">
+            <h2>Portfolio Tracking</h2>
+            <div class="portfolio-dropdown">
+                <label for="portfolioSelect">Select Stock:</label>
+                <select id="portfolioSelect" onchange="updatePortfolio()">
+                    <option value="">Select Stock</option>
+                    <option value="AAPL">Apple</option>
+                    <option value="TSLA">Tesla</option>
+                    <option value="GOOG">Google</option>
+                </select>
+            </div>
+            <div id="portfolioDetails" class="portfolio-details">
+                <!-- Portfolio information will be loaded here -->
+            </div>
+        </section> 
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

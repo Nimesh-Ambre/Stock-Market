@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+        }
+        .sidebar {
+            width: 200px;
+            background: #f4f4f4;
+            padding: 15px;
+            height: 100vh;
+        }
+        .sidebar h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .sidebar a {
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .sidebar a:hover {
+            background: #0056b3;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        .chart-section img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h3>Dashboard</h3>
+        <a href="#">Chart</a>
+        <a href="#">About Us</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+    <div class="main-content">
+        <h1>Stock Performance</h1>
+        <div class="chart-section">
+            {% if stock_graph %}
+                <img src="data:image/png;base64,{{ stock_graph }}" alt="Stock Performance Graph">
+            {% else %}
+                <p>Unable to load stock data.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

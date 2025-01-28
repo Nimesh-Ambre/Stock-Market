@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .controls select, .controls button {
+            margin: 0 10px;
+            padding: 8px;
+            font-size: 14px;
+        }
+        .chart-container {
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Stock Market Dashboard</h1>
+        </header>
+
+        <div class="controls">
+            <label for="typeSelect">Type:</label>
+            <select id="typeSelect">
+                <option value="Stock">Stock</option>
+            </select>
+
+            <label for="symbolSelect">Symbol:</label>
+            <select id="symbolSelect">
+                <option value="TATAMOTORS.NS">TATAMOTORS.NS</option>
+                <option value="ABB.NS">ABB.NS</option>
+            </select>
+
+            <button onclick="updateChart()">Show Chart</button>
+        </div>
+
+        <div class="chart-container">
+            {% if stock_graph %}
+                <img src="data:image/png;base64,{{ stock_graph }}" alt="Stock Performance Graph">
+            {% else %}
+                <p>Unable to load stock data.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
